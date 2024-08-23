@@ -1,60 +1,84 @@
-Get 11 on 'unsupported' PC via Windows Update or mounted ISO (no patching needed)  
----------------------------------------------------------------------------------  
-Step 1: use [Skip_TPM_Check_on_Dynamic_Update.cmd](Skip_TPM_Check_on_Dynamic_Update.cmd) to automatically bypass setup requirements  
-_It's a set it and forget it script, with built-in undo - v7 using more reliable /Product Server trick_  
-_V9 rebased on cmd due to defender transgression; skips already patched media (0b)_  
+Installing Windows 11 on Unsupported PCs via Windows Update or Mounted ISO (No Patching Required)
 
-Step 2: use [OfflineInsiderEnroll](https://github.com/abbodi1406/offlineinsiderenroll) to subscribe to the channel you want  
-_while on 10, use BETA for Windows 11 22000.x builds (release), DEV for Windows 11 225xx.x builds (experimental)_  
+Step 1: Utilize Skip_TPM_Check_on_Dynamic_Update.cmd to automatically bypass setup requirements.
 
-Step 3: check for updates via Settings - Windows Update and select Upgrade to Windows 11  
+This script is designed for ease of use, featuring a built-in undo option. Version 7 employs a more reliable /Product Server trick, while Version 9 has been rebased on cmd to address Defender issues and skips already patched media (0b).
 
-Get 11 on 'unsupported' PC via MediaCreationTool.bat  
-----------------------------------------------------  
-[MediaCreationTool.bat](../MediaCreationTool.bat) creates 11 media that will **automatically skip clean install checks**  
-***Auto Upgrade*** preset, or launching `auto.cmd` from the created media will **automatically skip upgrade checks**  
-Running `setup.exe` from the created media is not guaranteed to bypass setup checks (it should for now)  
-To NOT add bypass to the media, use ***MCT Defaults*** preset or rename the script as `def MediaCreationTool.bat`  
+Step 2: Use OfflineInsiderEnroll to subscribe to your desired channel.
 
-> Regarding the bypass method, for a more reliable and future-proof experience,  
-> clean installation is still handled via _winsetup.dll_ patching in _boot.wim_  
-> upgrade is now handled ~~only~~ via `auto.cmd` with the */Product Server* trick  
-> *Just ignore the 'Windows Server' label, please!*  
-> NEWS: temporarily added back my old-style 0-byte bypass as it still works on release  
+While on Windows 10, select BETA for Windows 11 22000.x builds (release) and DEV for Windows 11 225xx.x builds (experimental).
 
-i: [Skip_TPM_Check_on_Dynamic_Update.cmd](Skip_TPM_Check_on_Dynamic_Update.cmd) acts globally and **skips setup.exe upgrade checks as well**  
-_regardless of mounted iso / usb media already having a bypass added or not_  
+Step 3: Check for updates via Settings > Windows Update and select Upgrade to Windows 11.
+Installing Windows 11 on Unsupported PCs via MediaCreationTool.bat
 
-Already have a 11 ISO, USB or extracted Files and want to add a bypass  
-----------------------------------------------------------------------  
-Use [Quick_11_iso_esd_wim_TPM_toggle.bat](Quick_11_iso_esd_wim_TPM_toggle.bat) from the confort of right-click - SendTo menu  
+The MediaCreationTool.bat creates Windows 11 media that will automatically bypass clean install checks.
 
-Switches installation type to Server skipping install checks, or back to Client if run again on the same file, restoring hash!  
-**directly** on any downloaded windows 11 iso or extracted esd and wim, so there's no iso / dism mounting  
-_defiantly quick_  
+The Auto Upgrade preset, or launching auto.cmd from the created media, will automatically bypass upgrade checks.
 
-Works great with business / enterprise media since it comes with ei.cfg so setup won't ask for product key at start  
-for consumer / core media you can add a generic `EI.cfg` to the media\sources yourself with this content:  
-`[Channel]`  
-`_Default`  
+Please note that running setup.exe from the created media may not guarantee the bypass of setup checks (it should work for now).
 
-> if setup still asks for product key, input retail or gvlk keys found in media\sources\product.ini  
-> _gvlkprofessional=W269N-WFGWX-YVC9B-4J6C9-T83GX gvlkcore=TX9XD-98N7V-6WMQ6-BX7FG-H8Q99_  
-> _gvlkenterprise=NPPR9-FWDCX-D2C8J-H872K-2YT43 gvlkeducation=NW6C2-QMPVW-D7KKK-3GKT6-VCFB2 etc._  
+To avoid adding the bypass to the media, use the MCT Defaults preset or rename the script to def MediaCreationTool.bat.
 
-i: [Skip_TPM_Check_on_Dynamic_Update.cmd](Skip_TPM_Check_on_Dynamic_Update.cmd) acts globally and **skips setup.exe upgrade checks as well**  
-_regardless of mounted iso / usb media already having a bypass added or not_  
+    Note: For a more reliable and future-proof experience,
 
-Offline local account on 11 Home / Pro  
---------------------------------------  
-[MediaCreationTool.bat](../MediaCreationTool.bat) creates media that re-enables the *I dont have internet* OOBE choice (OOBE\BypassNRO)  
-It does so via [AutoUnattend.xml](AutoUnattend.xml), inserted into `boot.wim` to not cause setup.exe issues under windows  
-More conveniently can be placed at the root of 11 media, along with [auto.cmd](auto.cmd) to use for upgrades  
-Should work with any 11 Release (22000.x) or Dev (22xxx.x) media - and it hides unsupported PC nags as a bonus ;)  
-_If you have already connected at OOBE, can try email: `a` password: `a` to switch to local account_  
+    clean installations are still managed via winsetup.dll patching in boot.wim.
 
-Manage and troubleshoot Windows Update on any windows version and edition  
--------------------------------------------------------------------------  
-Use [windows_update_refresh.bat](https://pastebin.com/XQsgjt9p) to clear pending updates (including sneaky feature upgrades)  
-Use [windows_drivers_update_toggle.bat](https://pastebin.com/cK8y4YEX) to block driver updates even on Home editions  
-Use [windows_feature_update_toggle.bat](https://pastebin.com/EcLB14hg) to block feature upgrades on 1507 - 21H2 even on Home editions!  
+    Upgrades are now handled via auto.cmd using the /Product Server trick.
+
+    Please disregard the 'Windows Server' label.
+
+    Update: The old-style 0-byte bypass has been temporarily reintroduced as it remains effective on release.
+
+Important: The Skip_TPM_Check_on_Dynamic_Update.cmd operates globally and skips setup.exe upgrade checks,
+
+regardless of whether the mounted ISO or USB media already has a bypass applied.
+Adding a Bypass to an Existing Windows 11 ISO, USB, or Extracted Files
+
+To add a bypass, use Quick_11_iso_esd_wim_TPM_toggle.bat conveniently from the right-click SendTo menu.
+
+This script switches the installation type to Server, thereby skipping installation checks, or reverts to Client if executed again on the same file, restoring the hash.
+
+It operates directly on any downloaded Windows 11 ISO or extracted ESD and WIM files, eliminating the need for ISO or DISM mounting.
+
+This process is notably efficient.
+
+This method is particularly effective with business/enterprise media, as it includes ei.cfg, preventing setup from requesting a product key at the start.
+
+For consumer/core media, you can manually add a generic EI.cfg to the media\sources directory with the following content:
+
+Code
+
+[Channel]
+_Default
+
+    If setup still prompts for a product key, you may enter retail or GVLK keys found in media\sources\product.ini:
+
+    gvlkprofessional=W269N-WFGWX-YVC9B-4J6C9-T83GX
+
+    gvlkcore=TX9XD-98N7V-6WMQ6-BX7FG-H8Q99
+
+    gvlkenterprise=NPPR9-FWDCX-D2C8J-H872K-2YT43
+
+    gvlkeducation=NW6C2-QMPVW-D7KKK-3GKT6-VCFB2
+
+Important: The Skip_TPM_Check_on_Dynamic_Update.cmd operates globally and skips setup.exe upgrade checks,
+
+regardless of whether the mounted ISO or USB media already has a bypass applied.
+Offline Local Account Setup on Windows 11 Home/Pro
+
+The MediaCreationTool.bat creates media that re-enables the I don't have internet option during the OOBE (Out-Of-Box Experience) process (OOBE\BypassNRO).
+
+This is accomplished through the inclusion of AutoUnattend.xml, which is inserted into boot.wim to prevent issues with setup.exe under Windows.
+
+For added convenience, this file can be placed at the root of the Windows 11 media, along with auto.cmd for upgrades.
+
+This solution should be compatible with any Windows 11 Release (22000.x) or Dev (22xxx.x) media, and it also suppresses unsupported PC notifications as an added benefit.
+
+If you have already connected during OOBE, you may attempt to switch to a local account using email: a and password: a.
+Managing and Troubleshooting Windows Update on Any Windows Version and Edition
+
+Utilize windows_update_refresh.bat to clear pending updates, including hidden feature upgrades.
+
+Employ windows_drivers_update_toggle.bat to block driver updates, even on Home editions.
+
+Use windows_feature_update_toggle.bat to block feature upgrades on versions 1507 - 21H2, even on Home editions.
