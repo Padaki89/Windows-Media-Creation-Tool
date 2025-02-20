@@ -126,3 +126,4 @@ _We did it! We broke [the previous gist](https://git.io/MediaCreationTool.bat)_ 
 2022.03.20: stable - all issues ironed out; improved script ui; upgrade keeping files from Eval editions too
             last squash I promise ;)
 ```
+<p align="center">Support Made with Trust ❤️</p>
